@@ -8,6 +8,9 @@ import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import { useState } from "react";
 import { useEffect } from "react";
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+
+polyfillCountryFlagEmojis();
 
 const BASE_URL = "http://localhost:8000";
 
