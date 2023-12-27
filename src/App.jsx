@@ -1,4 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
 import Homepage from "./pages/Homepage";
@@ -6,9 +10,8 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
-import { useState } from "react";
-import { useEffect } from "react";
-import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+import CountryList from "./components/CountryList";
+import City from "./components/City";
 
 polyfillCountryFlagEmojis();
 
@@ -40,7 +43,7 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path="product" element={<Product />} />
         <Route path="pricing" element={<Pricing />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
           <Route
             index
@@ -50,7 +53,11 @@ function App() {
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="countries" element={<p>Countries</p>} />
+          <Route path="cities/:id" element={<City />} />
+          <Route
+            path="countries"
+            element={<CountryList cities={cities} isLoading={isLoading} />}
+          />
           <Route path="from" element={<p>form</p>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
