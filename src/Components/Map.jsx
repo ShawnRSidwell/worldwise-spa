@@ -26,6 +26,7 @@ const flagemojiToPNG = (flag) => {
 
 function Map() {
   const { cities } = useCities();
+  const [mapLat, mapLng] = useUrlPosition();
 
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const {
@@ -33,8 +34,6 @@ function Map() {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
-
-  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(
     function () {
